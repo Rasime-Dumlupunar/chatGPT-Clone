@@ -1,4 +1,4 @@
-//! HTML den gelenler
+//Html den gelenler
 const chatInput = document.querySelector("#chat-input");
 const sendButton = document.querySelector("#send-btn");
 const defaultText = document.querySelector(".default-text");
@@ -8,6 +8,7 @@ const deleteButton = document.querySelector("#delete-btn");
 
 
 let userText = null;
+
 //* Gönderdiğimiz HTML ve class ismine göre bize bir HTML oluşturur.
 const createElement = (html, className) => {
     //*Yeni bir div oluşturur.
@@ -26,16 +27,18 @@ const getChatResponse = async (incomingChatDiv) => {
     const pElement = document.createElement("p");   
     console.log(pElement);
     //* 1. adım: URL'i tanımla
-    const url = 'https://rapidapi.com/yourdevmail/api/chatgpt-ai-chat-bot';
+    const url = 'https://chatgpt-42.p.rapidapi.com/conversationgpt4-2';
     //* 2. adım : options'u tanımla
     const options = {
         method: 'POST', //*Atacağımız isteğin tipidir.
         //* API KEYİMİZ BULUNUR.
         headers: {
-            'x-rapidapi-key': 'ec7ab83db9mshfbdb92ab23b71acp165f45jsn15ea2057d114',
-            'x-rapidapi-host': 'chatgpt-42.p.rapidapi.com',
-            'Content-Type': 'application/json'
+           'x-rapidapi-key': 'c548d77868mshcee01d17b8c8bbep150604jsn769a0b8cdc94',
+		    'x-rapidapi-host': 'chatgpt-42.p.rapidapi.com',
+		    'Content-Type': 'application/json'          
+        
         },
+      
         body: JSON.stringify ({ // JSON.stringify ekleyerek options kısmına json formatına çeviriyoruz.
             messages: [
                 {
@@ -82,6 +85,7 @@ const getChatResponse = async (incomingChatDiv) => {
     
 
     incomingChatDiv.querySelector(".chat-details").appendChild(pElement);
+
     chatInput.value = null;
 };
 
@@ -101,6 +105,7 @@ const showTypingAnimation = () => {
 
     const incomingChatDiv = createElement(html, "incoming");
     chatContainer.appendChild(incomingChatDiv);
+    console.log(incomingChatDiv);
     getChatResponse(incomingChatDiv);    
 };
 
@@ -110,18 +115,19 @@ const handleOutGoingChat = () => {
 
 //* İnputun içerisinde veri yoksa fonksiyonu return ile burada durdurur.
     if (!userText)  {
-        alert("Bir veri giriniz!!!")
-        return;
-        
+        alert("Bir veri giriniz!!!");
+        return;        
     }
-    const html = ` 
-    <div class="chat-content">
-        <div class="chat-details">
-            <img src="./images/164165677.jpg" alt="">
-            <p></p>
-        </div>
-    </div> 
+    const html = `        
+            <div class="chat-content">
+                <div class="chat-details">
+                    <img src="./images/164165677.jpg" alt=""/>
+                    <p></p>
+                </div>
+            </div>
+        
     `;
+
     //* Kullanıcının mesajını içeren bir div oluştur ve bunu chatContainer yapısına ekle.
     const outgoingChatDiv = createElement(html, "outgoing");
     defaultText.remove(); //* başlangıçta gelen varsayılan yazıyı kaldırdık.
@@ -146,7 +152,7 @@ themeButton.addEventListener("click", () => {
     document.body.classList.toggle("light-mode");
     //* body light-mode classını içeriyorsa themeButton içerisindeki
     //* yazıyı dark_mode yap. İçermiyorsa light-mode yap
-    themeButton.innerHTML = document.body.classList.contains("light-mode") 
+    themeButton.innerText = document.body.classList.contains("light-mode") 
     ? "dark_mode" 
     : "light_mode";
 });
