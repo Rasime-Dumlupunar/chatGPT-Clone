@@ -19,3 +19,4 @@ Bu proje, ChatGPT benzeri bir sohbet uygulamasıdır. HTML, CSS ve Google Font a
 - **RapidAPI:** API entegrasyonu için.
 
 # chatGPT-Clone
+![](https://github.com/Rasime-Dumlupunar/chatGPT-Clone/blob/main/chatGPT.gif)
